@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'user_operation',
     'rest_framework',
     'xadmin',
-    'crispy_forms'
+    'crispy_forms',
+    'DjangoUeditor',
 ]
 
 MIDDLEWARE = [
@@ -144,5 +145,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+
+# 设置上传文件路径
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATIC_URL = '/static/'
