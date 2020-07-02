@@ -1,5 +1,5 @@
 # trade.models
-__author__ = 'derek'
+__author__ = 'hzy258syc'
 from django.db import models
 from datetime import datetime
 from goods.models import Goods
@@ -15,8 +15,8 @@ class ShoppingCart(models.Model):
     """
     购物车
     """
-    user = models.ForeignKey('User',on_delete=models.CASCADE, verbose_name='用户')
-    goods = models.ForeignKey('Goods',on_delete=models.CASCADE,verbose_name='商品')
+    user = models.ForeignKey(User,on_delete=models.CASCADE, verbose_name='用户')
+    goods = models.ForeignKey(Goods,on_delete=models.CASCADE,verbose_name='商品')
     nums = models.IntegerField('购买数量', default=0)
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
 

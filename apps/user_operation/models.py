@@ -1,5 +1,5 @@
 # user_operation/models.py
-__author__ = 'derek'
+__author__ = 'hzy258syc'
 
 
 from datetime import datetime

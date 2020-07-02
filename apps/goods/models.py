@@ -1,5 +1,5 @@
 # goods.models
-__author__ = 'derek'
+__author__ = 'hzy258syc'
 from django.db import models
 from datetime import datetime
 from DjangoUeditor.models import UEditorField
