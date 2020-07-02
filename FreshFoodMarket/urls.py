@@ -18,6 +18,9 @@ from django.urls import path,include
 import xadmin
 from django.views.static import serve
 from FreshFoodMarket.settings import MEDIA_ROOT
+from rest_framework.documentation import include_docs_urls
+
+from goods.view_base import GoodsListView
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -25,4 +28,10 @@ urlpatterns = [
     path('ueditor/', include('DjangoUeditor.urls')),
     # 文件
     path('media/<path:path>',serve, {'document_root': MEDIA_ROOT}),
+    # drf文档,title自定义
+    path('docs',include_docs_urls(title='生鲜超市管理')),
+    path('api-auth/', include('rest_framework.urls')),
+
+    # 商品列表页
+    path('goods/',GoodsListView.as_view(), name='goods_list')
 ]
