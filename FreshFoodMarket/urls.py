@@ -20,7 +20,7 @@ from django.views.static import serve
 from FreshFoodMarket.settings import MEDIA_ROOT
 from rest_framework.documentation import include_docs_urls
 
-from goods.view_base import GoodsListView
+from goods.views import GoodsListView
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
