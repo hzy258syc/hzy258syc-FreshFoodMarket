@@ -1,10 +1,17 @@
-from django.shortcuts import render
+# googd/views.py
+
 from rest_framework.views import APIView
 from goods.serializers import GoodsSerializer
 from .models import Goods
-from rest_framework import serializers,mixins,generics,viewsets
 from rest_framework.response import Response
+from rest_framework import mixins
+from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
+from rest_framework import viewsets
+from .filters import GoodsFilter
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
+
 # Create your views here.
 
 
@@ -26,11 +33,18 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
     商品列表页
     """
-    pagination_class = GoodsPagination
     # 这里必须定义一个默认的排序，否则会报错
     queryset = Goods.objects.all().order_by('id')
+    pagination_class = GoodsPagination
     serializer_class = GoodsSerializer
+    filter_backends = (DjangoFilterBackend,filters.SearchFilter,filters.OrderingFilter)
 
+    # 设置filter的类为我们自定义的类
+    filter_class = GoodsFilter
+    # 设置, =name表示精确搜索，也可以使用各种正则表达式
+    search_fields = ('=name','goods_brief')
+    # 添加排序功能
+    ordering_fields = ('sold_num', 'add_time')
 
 
 # class GoodsListView(generics.ListAPIView):
@@ -40,3 +54,7 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 #
 #     # def get(self,request,*args,**kwargs):
 #     #     return self.list(request,*args,**kwargs)
+
+
+
+
