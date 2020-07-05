@@ -52,9 +52,12 @@ INSTALLED_APPS = [
     'crispy_forms',
     'DjangoUeditor',
     'django_filters',
+    'coreschema',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -64,7 +67,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8000',
+)
 ROOT_URLCONF = 'FreshFoodMarket.urls'
+
+
 
 TEMPLATES = [
     {
@@ -148,6 +158,7 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
 
 
 # 设置上传文件路径

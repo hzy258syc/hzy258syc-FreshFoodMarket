@@ -20,10 +20,12 @@ from django.views.static import serve
 from FreshFoodMarket.settings import MEDIA_ROOT
 from rest_framework.documentation import include_docs_urls
 from rest_framework.routers import DefaultRouter
-from goods.views import GoodsListViewSet
+from goods.views import GoodsListViewSet,CategoryViewSet
+from rest_framework.authtoken import views
 
 router = DefaultRouter()
-router.register(r'goods',GoodsListViewSet)
+router.register(r'goods',GoodsListViewSet,base_name='goods')
+router.register(r'categorys',CategoryViewSet,base_name='categorys')
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -36,5 +38,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
 
     # 商品列表页
-    re_path('^', include(router.urls))
+    re_path('^', include(router.urls)),
+    # token
+    path('api-token-auth/', views.obtain_auth_token)
 ]

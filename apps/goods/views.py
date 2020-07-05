@@ -1,8 +1,8 @@
 # googd/views.py
 
 from rest_framework.views import APIView
-from goods.serializers import GoodsSerializer
-from .models import Goods
+from goods.serializers import GoodsSerializer,CategorySerializer
+from .models import Goods, GoodsCategory
 from rest_framework.response import Response
 from rest_framework import mixins
 from rest_framework import generics
@@ -20,7 +20,7 @@ class GoodsPagination(PageNumberPagination):
     商品列表自定义分页
     """
     # 默认每页显示的个数
-    page_size = 10
+    page_size = 12
     # 可以动态改变每页显示的个数
     page_size_query_param = 'page_size'
     # 页码参数
@@ -42,10 +42,17 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     # 设置filter的类为我们自定义的类
     filter_class = GoodsFilter
     # 设置, =name表示精确搜索，也可以使用各种正则表达式
-    search_fields = ('=name','goods_brief')
+    search_fields = ('name','goods_brief', 'goods_desc')
     # 添加排序功能
     ordering_fields = ('sold_num', 'add_time')
 
+
+class CategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    """
+    商品分类列表数据
+    """
+    queryset = GoodsCategory.objects.filter(category_type=1)
+    serializer_class = CategorySerializer
 
 # class GoodsListView(generics.ListAPIView):
 #     '商品列表页'
