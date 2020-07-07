@@ -22,6 +22,8 @@ from rest_framework.documentation import include_docs_urls
 from rest_framework.routers import DefaultRouter
 from goods.views import GoodsListViewSet,CategoryViewSet
 from rest_framework.authtoken import views
+from rest_framework_jwt.views import obtain_jwt_token
+
 
 router = DefaultRouter()
 router.register(r'goods',GoodsListViewSet,base_name='goods')
@@ -31,6 +33,10 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('xadmin/', xadmin.site.urls),
     path('ueditor/', include('DjangoUeditor.urls')),
+    # token
+    path('api-token-auth/', views.obtain_auth_token),
+    # jwt的token认证接口
+    path('jwt-auth/', obtain_jwt_token),
     # 文件
     path('media/<path:path>',serve, {'document_root': MEDIA_ROOT}),
     # drf文档,title自定义
@@ -39,6 +45,5 @@ urlpatterns = [
 
     # 商品列表页
     re_path('^', include(router.urls)),
-    # token
-    path('api-token-auth/', views.obtain_auth_token)
+
 ]

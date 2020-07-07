@@ -128,9 +128,9 @@ class Migration(migrations.Migration):
             name='category',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='goods.GoodsCategory', verbose_name='商品类目'),
         ),
-        # migrations.AddField(
-        #     model_name='banner',
-        #     name='goods',
-        #     field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='goods.Goods', verbose_name='商品'),
-        # ),
+        migrations.AddField(
+            model_name='banner',
+            name='goods',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='goods.Goods', verbose_name='商品'),
+        ),
     ]
