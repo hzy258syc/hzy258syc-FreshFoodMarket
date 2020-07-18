@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'django.middleware.common.CommonMAUTHENTICATION_BACKENDS iddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -94,6 +95,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'FreshFoodMarket.wsgi.application'
+
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+
+)
 
 
 # Database
@@ -149,8 +155,18 @@ REST_FRAMEWORK = {
 }
 
 
+import datetime
+#有效期限
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),    #也可以设置seconds=20
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',                       #JWT跟前端保持一致，比如“token”这里设置成JWT
+}
 
 
+#手机号验证
+REGEX_MOBILE = "^1[358]\d{9}$|^147\d{8}$|^176\d{8}$"
+#云片网APIKEY
+APIKEY = "2e87d17327d4be01608f7c6da23ecea2"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

@@ -23,11 +23,13 @@ from rest_framework.routers import DefaultRouter
 from goods.views import GoodsListViewSet,CategoryViewSet
 from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
-
+from users.views import SmsCodeViewset
 
 router = DefaultRouter()
 router.register(r'goods',GoodsListViewSet,base_name='goods')
 router.register(r'categorys',CategoryViewSet,base_name='categorys')
+# 配置codes的url
+router.register(r'code', SmsCodeViewset, base_name="code")
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
