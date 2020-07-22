@@ -26,4 +26,4 @@ class YunPian(object):
 if __name__ == "__main__":
     #例如：9b11127a9701975c734b8aee81ee3526
     yun_pian = YunPian("2e87d1xxxxxx7d4bxxxx1608f7c6da23exxxxx2")
-    yun_pian.send_sms("2018", "手机号码")
+    yun_pian.send_sms("2018", "13021206571")

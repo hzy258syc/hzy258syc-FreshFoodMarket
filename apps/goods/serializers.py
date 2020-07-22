@@ -1,7 +1,7 @@
 # goods/serializers.py
 
 from rest_framework import serializers
-from .models import Goods,GoodsCategory
+from .models import Goods,GoodsCategory,GoodsImage,Banner,HotSearchWords
 
 #Serializer实现商品列表页
 # class GoodsSerializer(serializers.Serializer):
@@ -37,10 +37,30 @@ class CategorySerializer(serializers.ModelSerializer):
         model = GoodsCategory
         fields = "__all__"
 
-#ModelSerializer实现商品列表页
+
+# 轮播图
+class GoodsImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GoodsImage
+        fields = ("image", )
+
+
+# 商品列表页
 class GoodsSerializer(serializers.ModelSerializer):
-    #覆盖外键字段
-    category = CategorySerializer()
+    # 覆盖外键字段
+    category = CategorySerializer
+    # image是数据库设置的related_name="images"，把轮播图嵌套进来
+    images = GoodsImageSerializer(many=True)
     class Meta:
         model = Goods
-        fields = '__all__'
+        fields = "__all__"
+
+
+
+# #ModelSerializer实现商品列表页
+# class GoodsSerializer(serializers.ModelSerializer):
+#     #覆盖外键字段
+#     category = CategorySerializer()
+#     class Meta:
+#         model = Goods
+#         fields = '__all__'
