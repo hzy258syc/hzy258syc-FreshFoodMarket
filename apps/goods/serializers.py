@@ -57,7 +57,7 @@ class GoodsSerializer(serializers.ModelSerializer):
 
 
 
-# #ModelSerializer实现商品列表页,测试一下pycharm版本控制
+# #ModelSerializer实现pycharm测试列表页,测试一下pycharm版本控制
 # class GoodsSerializer(serializers.ModelSerializer):
 #     #覆盖外键字段
 #     category = CategorySerializer()
