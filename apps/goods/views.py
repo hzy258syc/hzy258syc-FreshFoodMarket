@@ -35,10 +35,10 @@ class GoodsListViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewset
     """
     # 这里必须定义一个默认的排序，否则会报错
     queryset = Goods.objects.all().order_by('id')
+    print(queryset,'########')
     pagination_class = GoodsPagination
     serializer_class = GoodsSerializer
     filter_backends = (DjangoFilterBackend,filters.SearchFilter,filters.OrderingFilter)
-
     # 设置filter的类为我们自定义的类
     filter_class = GoodsFilter
     # 设置, =name表示精确搜索，也可以使用各种正则表达式

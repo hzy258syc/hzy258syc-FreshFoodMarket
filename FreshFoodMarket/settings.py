@@ -28,7 +28,7 @@ SECRET_KEY = 'x3mjd#=2v#d(*al8*bv)g$d#xz^6hz(g03$r(gvn=xvc*=b7n)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # 重载系统用户， 让UserProfile生效
@@ -115,7 +115,7 @@ DATABASES = {
         'NAME': 'freshfoodmarket',  # 数据库名字
         'USER': 'root',  # 账号
         'PASSWORD': '4546742547',  # 密码
-        'HOST': '127.0.0.1',  # IP
+        'HOST': '122.51.188.162',  # IP
         'PORT': '3306',  # 端口
         # 这里引擎用innodb（默认myisam）
         # 因为后面第三方登录时，要求引擎为INNODB
