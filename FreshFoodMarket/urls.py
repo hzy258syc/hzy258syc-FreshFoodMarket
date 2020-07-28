@@ -20,7 +20,7 @@ from django.views.static import serve
 from FreshFoodMarket.settings import MEDIA_ROOT
 from rest_framework.documentation import include_docs_urls
 from rest_framework.routers import DefaultRouter
-from goods.views import GoodsListViewSet,CategoryViewSet
+from goods.views import GoodsListViewSet,CategoryViewSet, BannerViewset, IndexCategoryViewset
 from rest_framework.authtoken import views
 from rest_framework_jwt.views import obtain_jwt_token
 from users.views import SmsCodeViewset,UserViewset
@@ -43,6 +43,10 @@ router.register(r'address',AddressViewset , base_name="address")
 router.register(r'shopcarts', ShoppingCartViewset, base_name="shopcarts")
 # 配置订单的url
 router.register(r'orders', OrderViewset, base_name="orders")
+# 配置首页轮播图的url
+router.register(r'banners',BannerViewset, base_name='banners')
+# 首页系列商品展示url
+router.register(r'indexgoods', IndexCategoryViewset, base_name="indexgoods")
 
 
 urlpatterns = [
